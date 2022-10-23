@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap')
+
+@mixin apadptiveSize($property, $minSize, $maxSize, $type)
+    @if $type ==vw 
+        #{$property}: calc(#{$minSize + rem} + (#{$maxSize} - #{$minSize}) * ((100vw - 250px) / (768 - 250)))
+    @else if $type ==vh 
+        #{$property}: calc(#{$minSize + rem} + (#{$maxSize} - #{$minSize}) * ((100vh - 250px) / (768 - 250)))
+
+//THEME COLORS
+$LightMainColor:  #F8F9FA
+$LightSecondaryColor: #cdd1d6
+$DarkMainColor:  #495057
+$DarkSecondaryColor:  #212529
+
+//TEXT COLORS
+$redColor: #e5383b
+$yellowColor: #ff7b00
+
+//SPACING
+$MainSpacing: 10px
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    font-family: 'Press Start 2P', cursive
+
+body
+    background-color: $LightMainColor
+    min-width: 100%
+    font-size: 1rem
+    line-height: 1.5
+    letter-spacing: .1em
+    word-spacing: -0.3em
+pre
+    color: $LightSecondaryColor
+.red-text
+    color: $redColor
+.yellow-text
+    color: $yellowColor
+
+//HEADER STYLES
+.header
+    background-color: $DarkSecondaryColor
+    color: $LightMainColor
+    margin-bottom: $MainSpacing
+    
+    &__container
+        display: flex
+        align-items: center
+        justify-content: space-between
+        margin: 0 auto
+        padding: .1875em 15px .1875em 15px
+
+    &__item
+        color: $LightMainColor
+        text-decoration: none
+        user-select: none
+        -ms-user-select: none
+        -moz-user-select: none
+        -webkit-user-select: none
+    &__item:hover
+        color: $redColor
+        cursor: pointer 
+
+    &__commands-list
+        display: none
+        list-style: none
+    &__commands-list.open
+        display: flex
+        flex-flow: column
+        background-color: $DarkSecondaryColor
+        position: absolute
+        z-index: 5
+        top: 1.875em
+        right: 0px
+        padding: .5em
+        text-align: right
+
+    &__command
+        background-color: $DarkMainColor
+        margin-bottom: .1875em
+        padding-left: .2em
+    &__command:hover
+        color: $redColor
+        cursor: pointer
+
+    &__props-list
+        font-size: 0.8em
+        list-style: none
+        display: none
+    &__props-list.open
+        display: block
+
+    &__props
+        margin-bottom: .1875em
+    &__props:hover
+        cursor: pointer
+        color: $redColor
+
+//SIDEBAR AND PLAYGROUND CONTAINER
+.main__container
+    max-width: 98%
+    margin: 0 auto
+    display: flex
+    justify-content: center
+    gap: $MainSpacing
+
+//SIDEBAR
+.sidebar
+    background-color: $LightSecondaryColor
+    color: $DarkMainColor
+    position: relative
+    width: 47.5vw
+    padding: .625em 1.5625em 1.5625em 1.5625em
+
+    .title-block
+        display: flex
+        justify-content: center
+        align-items: center
+        position: relative
+        column-gap: .25em
+
+        &__text
+            text-align: center
+            line-height: 1.5
+            letter-spacing: .2em
+        &__text:hover
+            cursor: pointer
+
+        &__icon
+            background-image: url(../images/arrow.png)
+            background-size: cover
+            height: 1em
+            width: 1.75em
+            margin-bottom: .25em
+        &__icon:hover
+            cursor: pointer
+        &__icon.active
+            transform: rotate(180deg)
+
+        &__level-menu
+            display: none
+            list-style: none
+        &__level-menu.open
+            display: grid
+            grid-template-columns: repeat(8, 1fr)
+            grid-template-rows: repeat(4, 1fr)
+            grid-column-gap: .25em
+            grid-row-gap: .25em
+            background-color: $DarkSecondaryColor
+            position: absolute
+            top: 2em
+            padding: .25em
+            text-align: center
+        &__level
+            background-color: $DarkMainColor
+            color: $LightMainColor
+            padding-left: .25em
+            opacity: .5
+            user-select: none
+            -ms-user-select: none
+            -moz-user-select: none
+            -webkit-user-select: none
+        &__level.solved
+            opacity: 1
+        &__level.solved:hover
+            cursor: pointer
+            color: $redColor
+
+    &__text-body
+        display: flex
+        flex-flow: column
+        row-gap: 1em
+    &__properties
+        font-size: 0.8em
+        list-style: none
+
+//CODEEDITOR
+.code-editor
+    background-color: $DarkSecondaryColor
+    width: 100%
+    display: flex
+    &__numbers
+        background-color: $DarkMainColor
+        color: $LightSecondaryColor
+        width: 2.5em
+        text-align: right
+    &__work-area
+        width: 100%
+        position: relative
+    &__input
+        outline: none
+        resize: none
+        border: none
+        height: 7.5em
+        background-color: $DarkMainColor
+        color: $redColor
+        font-size: 1rem
+        line-height: 1.5
+        letter-spacing: .1em
+        word-spacing: -0.3em
+        margin-left: 2.4375em
+        padding-left: .125em
+        width: calc(100% - 3.6875em)
+    &__bttn-next
+        position: absolute
+        right: 1.25em
+        bottom: 1.25em
+        color: #fff
+        font-size: 1rem
+        line-height: 1.5
+        letter-spacing: .1em
+        word-spacing: -0.3em
+        padding: .3125em .625em .3125em .625em
+        transition: all 0.5s ease
+        background-color: #41c95e
+        border: .125em solid #29a043
+        filter: grayscale(0.7)
+    &__bttn-next.ready
+        filter: grayscale(0)
+        cursor: pointer
+
+//PLAYGROUND
+.playground
+    position: relative
+    height: 47.5vw
+    width: 47.5vw
+    background: repeating-linear-gradient(#414552, #414552 10px, #373b47 10px, #373b47 20px)
+
+.playground__layer
+    width: 100%
+    height: 100%
+    padding: 0.65%
+    gap: 0.55%
+    display: flex
+
+.target-layer
+    position: absolute
+    top: 0
+    right: 0
+    .blue
+        border-color: #408baa
+    .green
+        border-color: #24df89
+    .yellow
+        border-color: #e6a425
+
+.engineer-layer
+    position: relative
+    .blue
+        background-image: url(../images/blue-engineer.png)
+    .green
+        background-image: url(../images/green-engineer.png)
+    .yellow
+        background-image: url(../images/yellow-engineer.png)
+
+.object
+    height: 19.55%
+    width: 19.55%
+
+.target
+    border: .5em solid
+.engineer
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center
+
+
+//MEDIA QUERIES
+@media (max-width: 768px)
+    body
+        @include apadptiveSize(font-size, 0.8, 1, vw)
+    .main__container
+        flex-flow: column-reverse
+        align-items: center
+        margin-bottom: $MainSpacing
+    .sidebar
+        width: 95.5vw
+    .code-editor__input
+        @include apadptiveSize(font-size, 0.8, 1, vw)
+    .code-editor__bttn-next
+        @include apadptiveSize(font-size, 0.8, 1, vw)
+    .playground
+        height: 95.5vw
+        width: 95.5vw

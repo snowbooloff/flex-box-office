@@ -30,7 +30,7 @@ function checkInput() {
 
     if (currentLevelNum > 0) {
         if (checkPosition(engineer) === checkPosition(target)) {
-            localStorage.setItem(`CodeInputValue${currentLevelNum}`, msg)
+            localStorage.setItem(`CodeInputValue${currentLevelNum}`, msg.trim())
             nextButton.classList.add('ready');
         } else {
             nextButton.classList.remove('ready');

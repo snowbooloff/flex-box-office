@@ -1,22 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap')
 
-@mixin apadptiveSize($property, $minSize, $maxSize, $type)
-    @if $type ==vw 
-        #{$property}: calc(#{$minSize + rem} + (#{$maxSize} - #{$minSize}) * ((100vw - 250px) / (768 - 250)))
-    @else if $type ==vh 
-        #{$property}: calc(#{$minSize + rem} + (#{$maxSize} - #{$minSize}) * ((100vh - 250px) / (768 - 250)))
-
-//THEME COLORS
-$LightMainColor:  #F8F9FA
+//Variables
+$LightMainColor: #F8F9FA
 $LightSecondaryColor: #cdd1d6
-$DarkMainColor:  #495057
-$DarkSecondaryColor:  #212529
+$DarkMainColor: #495057
+$DarkSecondaryColor: #212529
 
-//TEXT COLORS
 $redColor: #e5383b
 $yellowColor: #ff7b00
 
-//SPACING
 $MainSpacing: 10px
 
 *
@@ -44,7 +36,7 @@ pre
     background-color: $DarkSecondaryColor
     color: $LightMainColor
     margin-bottom: $MainSpacing
-    
+
     &__container
         display: flex
         align-items: center
@@ -61,7 +53,7 @@ pre
         -webkit-user-select: none
     &__item:hover
         color: $redColor
-        cursor: pointer 
+        cursor: pointer
 
     &__commands-list
         display: none
@@ -266,21 +258,28 @@ pre
     background-repeat: no-repeat
     background-position: center
 
-
 //MEDIA QUERIES
 @media (max-width: 768px)
+    $MainAdaptiveSpacing: calc(5px + (10 - 5) * ((100vw - 250px) / (768 - 250)))
+    $MainAdaptiveFontSize: calc(0.8rem + (1 - 0.8) * ((100vw - 250px) / (768 - 250)))
+    .header
+        margin-bottom: $MainAdaptiveSpacing
     body
-        @include apadptiveSize(font-size, 0.8, 1, vw)
+        font-size: $MainAdaptiveFontSize
     .main__container
         flex-flow: column-reverse
         align-items: center
-        margin-bottom: $MainSpacing
+        margin-bottom: $MainAdaptiveSpacing
+        gap: $MainAdaptiveSpacing
     .sidebar
         width: 95.5vw
+        padding: .3125em .78125em .78125em .78125em
+        &__text-body
+            row-gap: .5em
     .code-editor__input
-        @include apadptiveSize(font-size, 0.8, 1, vw)
+        font-size: $MainAdaptiveFontSize
     .code-editor__bttn-next
-        @include apadptiveSize(font-size, 0.8, 1, vw)
+        font-size: $MainAdaptiveFontSize
     .playground
         height: 95.5vw
         width: 95.5vw

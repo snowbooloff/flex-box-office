@@ -13,6 +13,11 @@ if (Number.isNaN(currentLevelNum)) {
 
 document.addEventListener("load", startLevel());
 
+window.addEventListener("unload", () => {
+    currentLevelNum = document.querySelectorAll(".solved").length - 1;
+    localStorage.setItem("currentLevel", currentLevelNum);
+});
+
 const debounce = (func, ms) => {
     let delayTime;
     return function () {
@@ -32,7 +37,9 @@ function checkInput() {
 
     if (currentLevelNum > 0) {
         if (checkPosition(engineer) === checkPosition(target)) {
-            localStorage.setItem(`CodeInputValue${currentLevelNum}`, msg.trim());
+            if (currentLevelNum <= 30) {
+                localStorage.setItem(`CodeInputValue${currentLevelNum}`, msg.trim());
+            }
             nextButton.classList.add("ready");
         } else {
             nextButton.classList.remove("ready");
@@ -87,19 +94,13 @@ document.addEventListener("click", (e) => {
     if (e.target.closest(".title-block__level") && e.target.classList.contains("solved")) {
         document.querySelector(".title-block__icon").classList.remove("active");
         document.querySelector(".title-block__level-menu").classList.remove("open");
-        currentLevelNum = Number(e.target.textContent) - 1;
-        currentLevelNum++;
+        currentLevelNum = Number(e.target.textContent);
         startLevel();
     }
     if (e.target.closest(".code-editor__bttn-next") && nextButton.classList.contains("ready")) {
         currentLevelNum++;
         startLevel();
     }
-});
-
-window.addEventListener("unload", () => {
-    currentLevelNum = document.querySelectorAll(".solved").length;
-    localStorage.setItem("currentLevel", currentLevelNum);
 });
 
 document.addEventListener("keydown", (e) => {
@@ -133,23 +134,41 @@ function generateObjectAndTargets(color, colorCount) {
     }
 }
 
-function PrepareLevel() {
-    codeInInput.blur();
-    codeInInput.value = "";
-    engineerLayer.style = "justify-content: start";
+function generateLevelName() {
+    const titleName = document.querySelector(".title-block__text");
+    if (currentLevelNum == 0) {
+        titleName.innerHTML = "ВСТУПЛЕНИЕ";
+    }
+    if (currentLevelNum <= 30 && !currentLevelNum == 0) {
+        titleName.innerHTML = `УРОВЕНЬ ${currentLevelNum}`;
+    }
+    if (currentLevelNum > 30) {
+        titleName.innerHTML = `УРОВЕНЬ ${(Math.random() * (500 - 100) + 100).toFixed(0)}`;
+    }
+}
 
-    engineerLayer.innerHTML = "";
-    targetLayer.innerHTML = "";
-
-    nextButton.classList.remove("ready");
-
+function ClearCommandObject() {
     for (var prop in CommandStrList) {
         delete CommandStrList[prop];
     }
+}
 
-    document.querySelector(".title-block__text").innerHTML = "УРОВЕНЬ " + currentLevelNum;
+function PrepareLevel() {
+    codeInInput.blur();
+    codeInInput.value = "";
+    engineerLayer.innerHTML = "";
+    targetLayer.innerHTML = "";
+    nextButton.classList.remove("ready");
 
-    for (let i = 1; i <= currentLevelNum; i++) {
-        document.querySelectorAll(".title-block__level")[i - 1].classList.add("solved");
+    ClearCommandObject();
+
+    engineerLayer.style = "justify-content: start";
+
+    generateLevelName();
+
+    if (currentLevelNum <= 30) {
+        for (let i = 0; i <= currentLevelNum; i++) {
+            document.querySelectorAll(".title-block__level")[i].classList.add("solved");
+        }
     }
 }

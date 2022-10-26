@@ -10,15 +10,11 @@
     <body>
         <header class="header">
             <div class="header__container">
-                <a class="header__logo header__item" href="index.html"
-                    >Flex Office</a
-                >
+                <a class="header__logo header__item" href="index.html">Flex Office</a>
                 <nav class="header__help-nav">
                     <p class="header__menu header__item">Подсказки</p>
                     <ul class="header__commands-list">
-                        <li class="header__command justify-content">
-                            justify-content
-                        </li>
+                        <li class="header__command justify-content">justify-content</li>
                         <ul class="header__props-list">
                             <li class="header__props">flex-start</li>
                             <li class="header__props">flex-end</li>
@@ -35,9 +31,7 @@
                             <li class="header__props">stretch</li>
                             <li class="header__props">baseline</li>
                         </ul>
-                        <li class="header__command flex-direction">
-                            flex-direction
-                        </li>
+                        <li class="header__command flex-direction">flex-direction</li>
                         <ul class="header__props-list">
                             <li class="header__props">row</li>
                             <li class="header__props">row-reverse</li>
@@ -57,9 +51,7 @@
                             <li class="header__props">column wrap</li>
                             <li class="header__props-etc">и так далее…</li>
                         </ul>
-                        <li class="header__command align-content">
-                            align-content
-                        </li>
+                        <li class="header__command align-content">align-content</li>
                         <ul class="header__props-list">
                             <li class="header__props">flex-start</li>
                             <li class="header__props">flex-end</li>
@@ -90,6 +82,7 @@
                         <div class="title-block__icon"></div>
                         <h1 class="title-block__text">ВСТУПЛЕНИЕ</h1>
                         <ul class="title-block__level-menu">
+                            <li class="title-block__level">0</li>
                             <li class="title-block__level">1</li>
                             <li class="title-block__level">2</li>
                             <li class="title-block__level">3</li>
@@ -123,34 +116,7 @@
                         </ul>
                     </div>
 
-                    <div class="sidebar__text-body">
-                        <p class="sidebar__backstory">
-                            Приветсвуем в нашей игре. Здесь ты будешь
-                            расставлять работинков нашего маленького офиса и
-                            изучать <span class="red-text">CSS</span> свойство
-                            <span class="red-text">display:flex</span>
-                        </p>
-
-                        <p class="sidebar__instructions">
-                            <span class="red-text">display:flex</span>(флекс
-                            бокс) - это способ позицирования обьектов. Он
-                            позволяет нам делать очень гибкие сайты, которые
-                            потом удобно адаптировать
-                        </p>
-
-                        <p class="sidebar__instructions">
-                            В основе
-                            <span class="red-text">Флекс бокса</span> лежит
-                            гибкий <span class="red-text">контейнер</span> и
-                            <span class="red-text">элементы</span> этого
-                            контейнера
-                        </p>
-
-                        <p class="sidebar__example">
-                            Напиши <span class="yellow-text">ready</span> и мы
-                            начинаем :)
-                        </p>
-                    </div>
+                    <div class="sidebar__text-body"></div>
 
                     <br />
                     <div class="code-editor">
@@ -159,14 +125,9 @@
                         </div>
                         <div class="code-editor__work-area">
                             <pre>.Office {<br>   display:flex;</pre>
-                            <textarea
-                                class="code-editor__input"
-                                autocapitalize="none"
-                            ></textarea>
+                            <textarea class="code-editor__input" autocapitalize="none"></textarea>
                             <pre>}</pre>
-                            <button class="code-editor__bttn-next">
-                                Дальше
-                            </button>
+                            <button class="code-editor__bttn-next">Дальше</button>
                         </div>
                     </div>
                 </section>
@@ -174,5 +135,6 @@
         </main>
     </body>
     <script src="js/levels.js"></script>
-    <script async src="js/script.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/randmizeLevel.js"></script>
 </html>

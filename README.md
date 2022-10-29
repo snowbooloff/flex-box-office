@@ -1,4 +1,4 @@
-# flex-box-office
+# FLEX BOX OFFICE
 A game for learning CSS flexbox
 # About
 + This is simple tic tac toe game!  
